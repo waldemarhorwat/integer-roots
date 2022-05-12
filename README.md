@@ -19,11 +19,13 @@ The fundamental approach of computing the exact square or cube root of *n* trunc
 Given an approximation *x*<sub>*i*</sub> to a root of the equation *f*(*x*) = 0, [Newton's method](https://en.wikipedia.org/wiki/Newton%27s_method) produces the next approximation
 
 <img src="https://render.githubusercontent.com/render/math?math=x_{i%2b1}=x_i-\frac{f(x_i)}{f'(x_i)}">
+<img src="https://latex.codecogs.com/svg.latex?x_{i%2b1}=x_i-\frac{f(x_i)}{f'(x_i)}">
 
 For computing square roots we're looking for roots of *f*(*x*) = *x*² – *n* so Newton's method becomes
 
 <img src="formulas/newtons-method-2.png" width=230 height=38>
-
+<img src="https://latex.codecogs.com/svg.latex?x_{i+1}=x_i-\frac{x_i^2-n}{2x_i}=\frac{1}{2}(x_i+\frac{n}{x_i})">
+<img src="formulas/newtons-method-2a.png" width=272 height=47>
 
 # Square Root Algorithm
 
