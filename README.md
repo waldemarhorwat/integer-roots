@@ -4,6 +4,8 @@ Here are simple algorithms *BigIntSqrt* and *BigIntCbrt* for computing exact int
 Both algorithms are efficient, taking only log(log(*n*)) operations to compute square or cube roots of *n*.
 I'm also including proofs that these algorithms compute the exact results for all inputs:
 
+<img src="formulas/BigIntSqrt-def.png" width=330 height=24>
+<img src="formulas/BigIntCbrt-def.png" width=273 height=24>
 <img src="https://render.githubusercontent.com/render/math?math=\forall n\in\mathbb{Z},n\geq 0:BigIntSqrt(n)=\left\lfloor\sqrt{n}\right\rfloor">
 <img src="https://render.githubusercontent.com/render/math?math=\forall n\in\mathbb{Z}:BigIntCbrt(n)=\left[\sqrt[3]{n}\right]">
 
