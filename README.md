@@ -6,13 +6,12 @@ I'm also including proofs that these algorithms compute the exact results for al
 
 <img src="formulas/BigIntSqrt-def.png" width=330 height=24>
 <img src="formulas/BigIntCbrt-def.png" width=273 height=24>
-<img src="https://render.githubusercontent.com/render/math?math=\forall n\in\mathbb{Z},n\geq 0:BigIntSqrt(n)=\left\lfloor\sqrt{n}\right\rfloor">
-<img src="https://render.githubusercontent.com/render/math?math=\forall n\in\mathbb{Z}:BigIntCbrt(n)=\left[\sqrt[3]{n}\right]">
 
-** Notation
+## Notation
 
-* ⌊*x*⌋ is the floor of the real number *x* (i.e. truncated towards -∞ to an integer): ⌊7.1⌋ = 7, ⌊-3.2⌋ = -4, ⌊5⌋ = 5
-* [*x*] is the real number *x* truncated towards 0 to an integer: [7.1] = 7, [-3.2] = -3, [5] = 5
+* ⌊*x*⌋ is the floor of the real number *x* (i.e. truncated towards -∞ to an integer): ⌊7.1⌋ = 7, ⌊–3.2⌋ = –4, ⌊5⌋ = 5, ⌊–2⌋ = –2
+* [*x*] is the real number *x* truncated towards 0 to an integer: [7.1] = 7, [–3.2] = –3, [5] = 5, [–2] = –2
+* <img src="formulas/quotient.png" width=22 height=40> is the quotient of *x* divided by *y* truncated towards 0 to an integer: [17/5] = [3.4] = 3, [–7/2] =[–3.5] = –3, [10/2] = 5. When *x* and *y* are integers, this is the same as ECMAScript's `BigInt` division of *x* and *y*.
 
 # Approach
 
@@ -20,7 +19,6 @@ The fundamental approach of computing the exact square or cube root of *n* trunc
 
 Given an approximation *x*<sub>*i*</sub> to a root of the equation *f*(*x*) = 0, [Newton's method](https://en.wikipedia.org/wiki/Newton%27s_method) produces the next approximation
 
-<img src="https://render.githubusercontent.com/render/math?math=x_{i%2b1}=x_i-\frac{f(x_i)}{f'(x_i)}">
 <img src="https://latex.codecogs.com/svg.latex?x_{i%2b1}=x_i-\frac{f(x_i)}{f'(x_i)}">
 
 For computing square roots we're looking for roots of *f*(*x*) = *x*² – *n* so Newton's method becomes
@@ -38,3 +36,8 @@ For computing square roots we're looking for roots of *f*(*x*) = *x*² – *
 # Cube Root Algorithm
 
 ## Proof
+
+## Scratchpad
+
+<img src="https://render.githubusercontent.com/render/math?math=\forall n\in\mathbb{Z},n\geq 0:BigIntSqrt(n)=\left\lfloor\sqrt{n}\right\rfloor">
+<img src="https://render.githubusercontent.com/render/math?math=\forall n\in\mathbb{Z}:BigIntCbrt(n)=\left[\sqrt[3]{n}\right]">
