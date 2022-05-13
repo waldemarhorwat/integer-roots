@@ -9,9 +9,11 @@ I'm also including proofs that these algorithms compute the exact results for al
 
 ## Notation
 
+All operations have their usual mathematical meanings on real numbers.
 * ⌊*x*⌋ is the floor of the real number *x* (i.e. truncated towards -∞ to an integer): ⌊7.1⌋ = 7, ⌊–3.2⌋ = –4, ⌊5⌋ = 5, ⌊–2⌋ = –2
 * [*x*] is the real number *x* truncated towards 0 to an integer: [7.1] = 7, [–3.2] = –3, [5] = 5, [–2] = –2
-* <img src="formulas/quotient.png" width=22 height=40> is the quotient of *x* divided by *y* truncated towards 0 to an integer: [17/5] = [3.4] = 3, [–7/2] =[–3.5] = –3, [10/2] = 5. When *x* and *y* are integers, this is the same as ECMAScript's `BigInt` division of *x* and *y*.
+We can combine [*x*] with division to denote integer division truncating towards 0:
+* <img src="formulas/quotient.png" width=22 height=40> is the quotient of *x* divided by *y* truncated towards 0 to an integer: [17/5] = [3.4] = 3, [–7/2] = [–3.5] = –3, [10/2] = 5. When *x* and *y* are integers, this is the same as ECMAScript's `BigInt` division of *x* and *y*.
 
 # Approach
 
@@ -19,13 +21,18 @@ The fundamental approach of computing the exact square or cube root of *n* trunc
 
 Given an approximation *x*<sub>*i*</sub> to a root of the equation *f*(*x*) = 0, [Newton's method](https://en.wikipedia.org/wiki/Newton%27s_method) produces the next approximation
 
+<img src="formulas/newtons-method.png" width=230 height=39>
 <img src="https://latex.codecogs.com/svg.latex?x_{i%2b1}=x_i-\frac{f(x_i)}{f'(x_i)}">
 
-For computing square roots we're looking for roots of *f*(*x*) = *x*² – *n* so Newton's method becomes
+For computing square roots we're looking for roots of *f*(*x*) = *x*<sup>2</sup> – *n* so Newton's method becomes
 
 <img src="formulas/newtons-method-2.png" width=230 height=38>
 <img src="https://latex.codecogs.com/svg.latex?x_{i+1}=x_i-\frac{x_i^2-n}{2x_i}=\frac{1}{2}(x_i+\frac{n}{x_i})">
 <img src="formulas/newtons-method-2a.png" width=272 height=47>
+
+For cube roots we're looking for roots of *f*(*x*) = *x*<sup>3</sup> – *n*, in which case Newton's method becomes
+
+<img src="formulas/newtons-method-3.png" width=284 height=50>
 
 # Square Root Algorithm
 
