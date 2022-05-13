@@ -21,13 +21,10 @@ The fundamental approach of computing the exact square or cube root of *n* trunc
 
 Given an approximation *x*<sub>*i*</sub> to a root of the equation *f*(*x*) = 0, [Newton's method](https://en.wikipedia.org/wiki/Newton%27s_method) produces the next approximation
 
-<img src="formulas/newtons-method.png" width=230 height=39>
-<img src="https://latex.codecogs.com/svg.latex?x_{i%2b1}=x_i-\frac{f(x_i)}{f'(x_i)}">
+<img src="formulas/newtons-method.png" width=151 height=48>
 
 For computing square roots we're looking for roots of *f*(*x*) = *x*<sup>2</sup> – *n* so Newton's method becomes
 
-<img src="formulas/newtons-method-2.png" width=230 height=38>
-<img src="https://latex.codecogs.com/svg.latex?x_{i+1}=x_i-\frac{x_i^2-n}{2x_i}=\frac{1}{2}(x_i+\frac{n}{x_i})">
 <img src="formulas/newtons-method-2a.png" width=272 height=47>
 
 For cube roots we're looking for roots of *f*(*x*) = *x*<sup>3</sup> – *n*, in which case Newton's method becomes
@@ -45,6 +42,13 @@ For cube roots we're looking for roots of *f*(*x*) = *x*<sup>3</sup> – *n*
 ## Proof
 
 ## Scratchpad
+
+<img src="formulas/newtons-method.png" width=151 height=48>
+<img src="https://latex.codecogs.com/svg.latex?x_{i%2b1}=x_i-\frac{f(x_i)}{f'(x_i)}">
+
+<img src="formulas/newtons-method-2.png" width=230 height=38>
+<img src="https://latex.codecogs.com/svg.latex?x_{i+1}=x_i-\frac{x_i^2-n}{2x_i}=\frac{1}{2}(x_i+\frac{n}{x_i})">
+<img src="formulas/newtons-method-2a.png" width=272 height=47>
 
 <img src="https://render.githubusercontent.com/render/math?math=\forall n\in\mathbb{Z},n\geq 0:BigIntSqrt(n)=\left\lfloor\sqrt{n}\right\rfloor">
 <img src="https://render.githubusercontent.com/render/math?math=\forall n\in\mathbb{Z}:BigIntCbrt(n)=\left[\sqrt[3]{n}\right]">
