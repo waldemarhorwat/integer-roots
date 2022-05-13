@@ -7,6 +7,9 @@
 # quotient
 \left[\frac{x}{y}\right]
 
+# quotient-floor
+\left\lfloor\frac{x}{y}\right\rfloor
+
 # newtons-method
 x_{i+1}=x_i-\frac{f(x_i)}{f'(x_i)}
 

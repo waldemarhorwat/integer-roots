@@ -10,10 +10,15 @@ I'm also including proofs that these algorithms compute the exact results for al
 ## Notation
 
 All operations have their usual mathematical meanings on real numbers.
+
 * ⌊*x*⌋ is the floor of the real number *x* (i.e. truncated towards -∞ to an integer): ⌊7.1⌋ = 7, ⌊–3.2⌋ = –4, ⌊5⌋ = 5, ⌊–2⌋ = –2
 * [*x*] is the real number *x* truncated towards 0 to an integer: [7.1] = 7, [–3.2] = –3, [5] = 5, [–2] = –2
+
 We can combine [*x*] with division to denote integer division truncating towards 0:
+
 * <img src="formulas/quotient.png" width=22 height=40> is the quotient of *x* divided by *y* truncated towards 0 to an integer: [17/5] = [3.4] = 3, [–7/2] = [–3.5] = –3, [10/2] = 5. When *x* and *y* are integers, this is the same as ECMAScript's `BigInt` division of *x* and *y*.
+
+When *x* ≥ 0 and *y* > 0, the result of *x*/*y* is nonnegative, so truncating it towards 0 is the same as truncating it towards -∞. In such cases we'll sometimes use <img src="formulas/quotient.png" width=24 height=40> instead of <img src="formulas/quotient.png" width=22 height=40>. In the nonnegative case both denote ECMAScript's `BigInt` division of *x* and *y*.
 
 # Approach
 
