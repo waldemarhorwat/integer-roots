@@ -11,16 +11,20 @@ I'm also including proofs that these algorithms compute the exact results for al
 
 All operations have their usual mathematical meanings on real numbers.
 
-* ⌊*x*⌋ is the floor of the real number *x* (i.e. truncated towards -∞ to an integer): ⌊7.1⌋ = 7, ⌊–3.2⌋ = –4, ⌊5⌋ = 5, ⌊–2⌋ = –2
-* [*x*] is the real number *x* truncated towards 0 to an integer: [7.1] = 7, [–3.2] = –3, [5] = 5, [–2] = –2
+* ⌊*x*⌋ is the floor of the real number *x* (i.e. truncated towards -∞ to an integer):<br>
+⌊7.1⌋ = 7, ⌊–3.2⌋ = –4, ⌊5⌋ = 5, ⌊–2⌋ = –2.
+* [*x*] is the real number *x* truncated towards 0 to an integer:<br>
+[7.1] = 7, [–3.2] = –3, [5] = 5, [–2] = –2.
 
 We can combine [*x*] with division to denote integer division truncating towards 0:
 
-* <img src="formulas/quotient.png" width=22 height=40> is the quotient of *x* divided by *y* truncated towards 0 to an integer: [17/5] = [3.4] = 3, [–7/2] = [–3.5] = –3, [10/2] = 5. When *x* and *y* are integers, this is the same as ECMAScript's `BigInt` division of *x* and *y*.
+* <img src="formulas/quotient.png" width=22 height=40> is the quotient of *x* divided by *y* truncated towards 0 to an integer:<br>
+[17/5] = [3.4] = 3, [–7/2] = [–3.5] = –3, [10/2] = 5.<br>
+When *x* and *y* are integers, this is the same as ECMAScript's `BigInt` division of *x* and *y*.
 
 When *x* ≥ 0 and *y* > 0, the result of *x*/*y* is nonnegative, so truncating it towards 0 is the same as truncating it towards -∞.
 
-* In such nonnegative cases we'll sometimes use <img src="formulas/quotient-floor.png" width=24 height=40> instead of <img src="formulas/quotient.png" width=22 height=40>. In the nonnegative cases both denote ECMAScript's `BigInt` division of *x* and *y*.
+* In such nonnegative cases we'll sometimes use <img src="formulas/quotient-floor.png" width=24 height=40> instead of <img src="formulas/quotient.png" width=22 height=40>. In those cases they're equivalent and both denote ECMAScript's `BigInt` division of *x* and *y*.
 
 ## Bit-Size
 
@@ -48,11 +52,11 @@ These will produce an infinite series of successively more accurate real number 
 
 # Computing Square Roots
 
-The basic Newton's method uses real numbers and produces an infinite series of approximations. Let's modify it to use only integer arithmetic to find integer square roots truncated towards 0. Later we'll show that we'll arrive at the exact answer in finitely many (in fact only log(log(*n*))) operations. we can use it using only integer arithmetic in the *BigIntSqrt* and *BigIntCbrt* algorithms and .
+The basic Newton's method uses real numbers and produces an infinite series of approximations. Let's modify it to use only integer arithmetic to find integer square roots truncated towards 0. Later we'll show that we'll arrive at the exact answer in finitely many (in fact only log(log(*n*))) operations.
 
 # Square Root Algorithm
 
-The approach is as follows:
+The approach for computing *BigIntSqrt*(*n*) is as follows:
 
 If *n* = 0, then return 0.
 
@@ -63,13 +67,31 @@ For *i* = 0, 1, 2, 3, … compute the series
 
 <img src="formulas/int-newtons-method-2.png" width=161 height=75>
 
-until we find the lowest *k* > 0 such that *x*<sub>*k*+1</sub> ≥ *x*<sub>*k*</sub>.
+until we find the lowest *k* > 0 such that *x*<sub>*k*+1</sub> ≥ *x*<sub>*k*</sub>. Return *x*<sub>*k*</sub>.
 
-We will prove that our search for such a *k* terminates and that *x*<sub>*k* is the value of *BigIntSqrt*(*n*):
+We will prove that our search for such a *k* terminates and that *x*<sub>*k*</sub> satisfies
 
 <img src="formulas/x-k-2.png" width=88 height=24>
 
 ## ECMAScript
+
+We implement the above algorithm as follows. For simplicity we assume that the argument *n* is a `BigInt`; an actual implementation should check.
+
+```js
+function BigIntSqrt(n) {
+  if (n < 0n)
+    throw RangeError("Square root of negative BigInt");
+  if (n === 0n)
+    return 0n;
+  const w = BigIntLog2(n);  // BigIntLog2 returns a BigInt
+  let x = 1n << (w >> 1n);  // x is the initial guess x0 here
+  let next = (x + n/x)/2n;
+  do {
+    x = next;
+  } while ((next = (x + n/x)/2n) < x);
+  return x;
+}
+```
 
 ## Proof
 
