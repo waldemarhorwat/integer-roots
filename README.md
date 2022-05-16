@@ -57,9 +57,9 @@ The basic Newton's method uses real numbers and produces an infinite series of a
 
 # Square Root Algorithm
 
-The approach for computing *BigIntSqrt*(*n*) is as follows:
+The approach for computing *BigIntSqrt*(*n*) of integer *n* ≥ 0 is as follows:
 
-If *n* = 0, then return 0.
+If *n* = 0, then return 0. Otherwise, let
 
 <img src="formulas/n-width.png" width=102 height=20>
 <img src="formulas/initial-guess-2.png" width=89 height=22>
@@ -95,25 +95,49 @@ function BigIntSqrt(n) {
 ```
 
 ## Proof
-
 ### Lemmas
 
 Let's start with a few [lemmas about the floor function](https://en.wikipedia.org/wiki/Floor_and_ceiling_functions#Equivalences).
 
-Given a real number *x*, ⌊*x*⌋ is the unique integer *i* such that *x* = *i* + *f* and 0 ≤ *f* < 1. From that we can derive
+Given a real number *x*, ⌊*x*⌋ is the unique integer *i* such that *x* = *i* + *f* and 0 ≤ *f* < 1. From that we can derive the following lemmas.
 
 #### Lemma 1
+
 <img src="formulas/floor-int-addition.png" width=291 height=20>
 
 This is obvious from the definition of ⌊*x*⌋.
 
 #### Lemma 2
+
 <img src="formulas/floor-int-division.png" width=305 height=48>
 
-To prove this, let *x* = *i* + *f* where *i* is an integer and 0 ≤ *f* < 1. Then let *i*=*jn* + *k* where *j* and *k* are integers and 0 ≤ *k* ≤ *n* – 1. Then we have 0 ≤ *k* + *f* < *n* and thus
+To prove this, let *x* = *i* + *f* where *i* is an integer and 0 ≤ *f* < 1. Then let *i* = *jn* + *k* where *j* and *k* are integers and 0 ≤ *k* ≤ *n* – 1. Then we have 0 ≤ *k* + *f* < *n* and thus
 
 <img src="formulas/floor-int-division-lemma-1.png" width=491 height=48>
 <img src="formulas/floor-int-division-lemma-2.png" width=469 height=48>
+
+#### Lemma 3
+
+<img src="formulas/floor-recursion-redundant.png" width=378 height=60>
+
+Proof: By lemmas 1 and 2 we have
+
+<img src="formulas/floor-recursion-redundant-1.png" width=302 height=60>
+
+### Series
+
+Recall that the series for computing *BigIntSqrt*(*n*) when integer *n* > 0 consists of
+
+<img src="formulas/initial-guess-2-full.png" width=125 height=22>
+<img src="formulas/int-newtons-method-2.png" width=161 height=75>
+
+Given *n* ≥ 1, *x*<sub>0</sub> is an integer greater than 0. All subsequent terms of the series are obviously also integers.
+
+Define
+
+<img src="formulas/s-2.png" width=78 height=24>
+
+
 
 ## Small Value Optimization
 
