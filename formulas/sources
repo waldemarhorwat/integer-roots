@@ -33,3 +33,15 @@ x_k=\left\lfloor\sqrt{n}\right\rfloor
 
 # int-newtons-method-2
 x_{i+1}=\left\lfloor\frac{x_i+\left\lfloor\frac{n}{x_i}\right\rfloor}{2}\right\rfloor
+
+# floor-int-addition
+\forall x\in\mathbb{R}, n\in\mathbb{Z}:\left\lfloor x+n\right\rfloor=\left\lfloor x\right\rfloor+n
+
+# floor-int-division
+\forall x\in\mathbb{R}, n\in\mathbb{Z}, n>0:\left\lfloor\frac{\left\lfloor x\right\rfloor}{n}\right\rfloor=\left\lfloor\frac{x}{n}\right\rfloor
+
+# floor-int-division-lemma-1
+\left\lfloor\frac{x}{n}\right\rfloor=\left\lfloor\frac{(jn+k)+f}{n}\right\rfloor=\left\lfloor j+\frac{k+f}{n}\right\rfloor=j+\left\lfloor\frac{k+f}{n}\right\rfloor=j
+
+# floor-int-division-lemma-2
+\left\lfloor\frac{\left\lfloor x\right\rfloor}{n}\right\rfloor=\left\lfloor\frac{\left\lfloor(jn+k)+f\right\rfloor}{n}\right\rfloor=\left\lfloor\frac{jn+k}{n}\right\rfloor=\left\lfloor j+\frac{k}{n}\right\rfloor=j

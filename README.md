@@ -28,7 +28,8 @@ When *x* ≥ 0 and *y* > 0, the result of *x*/*y* is nonnegative, so truncat
 
 ## Bit-Size
 
-We'll need a helper function *BigIntLog2* that, given a positive integer *n*, returns the position of its most significant set bit when expressed in binary. For example, *BigIntLog2*(1) = 0, *BigIntLog2*(2) = 1, *BigIntLog2*(255) = 7, *BigIntLog2*(256) = 8. Mathematically, for integer *n* > 0, *BigIntLog2* is defined as
+We'll need a helper function *BigIntLog2* that, given a positive integer *n*, returns the position of its most significant set bit when expressed in binary. For example, *BigIntLog2*(1) = 0, *BigIntLog2*(2) = 1, *BigIntLog2*(255) = 7, *BigIntLog2*(256) = 8.<br>
+Mathematically *BigIntLog2* is defined as
 
 <img src="formulas/BigIntLog2-def.png" width=352 height=20>
 
@@ -52,7 +53,7 @@ These will produce an infinite series of successively more accurate real number 
 
 # Computing Square Roots
 
-The basic Newton's method uses real numbers and produces an infinite series of approximations. Let's modify it to use only integer arithmetic to find integer square roots truncated towards 0. Later we'll show that we'll arrive at the exact answer in finitely many (in fact only log(log(*n*))) operations.
+The basic Newton's method uses real numbers and produces an infinite series of approximations. Let's modify it to use only integer arithmetic to find integer square roots truncated towards 0. Later we'll show that we'll arrive at the exact answer in finitely many (in fact only log(log(*n*))) operations. A similar algorithm is described on [Wikipedia's entry on integer square roots](https://en.wikipedia.org/wiki/Integer_square_root) but without the detailed proof of correctness.
 
 # Square Root Algorithm
 
@@ -94,6 +95,25 @@ function BigIntSqrt(n) {
 ```
 
 ## Proof
+
+### Lemmas
+
+Let's start with a few [lemmas about the floor function](https://en.wikipedia.org/wiki/Floor_and_ceiling_functions#Equivalences).
+
+Given a real number *x*, ⌊*x*⌋ is the unique integer *i* such that *x* = *i* + *f* and 0 ≤ *f* < 1. From that we can derive
+
+#### Lemma 1
+<img src="formulas/floor-int-addition.png" width=291 height=20>
+
+This is obvious from the definition of ⌊*x*⌋.
+
+#### Lemma 2
+<img src="formulas/floor-int-division.png" width=305 height=48>
+
+To prove this, let *x* = *i* + *f* where *i* is an integer and 0 ≤ *f* < 1. Then let *i*=*jn* + *k* where *j* and *k* are integers and 0 ≤ *k* ≤ *n* – 1. Then we have 0 ≤ *k* + *f* < *n* and thus
+
+<img src="formulas/floor-int-division-lemma-1.png" width=491 height=48>
+<img src="formulas/floor-int-division-lemma-2.png" width=469 height=48>
 
 ## Small Value Optimization
 
