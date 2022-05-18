@@ -77,4 +77,31 @@ x_{i+1}=\left\lfloor\frac{x_i+\left\lfloor\frac{n}{x_i}\right\rfloor}{2}\right\r
 \frac{x_i+\frac{n}{x_i}}{2}\ge\sqrt{n}
 
 # induction-2-7
-x_{i+1}=\left\lfloor\frac{x_i+\frac{n}{x_i}}{2}\right\rfloor\ge\left\lfloor\sqrt{n}\right\rfloor=s
+\left\lfloor\frac{x_i+\frac{n}{x_i}}{2}\right\rfloor\ge\left\lfloor\sqrt{n}\right\rfloor
+
+# induction-2-8
+x_{i+1}=\left\lfloor\frac{x_i+\left\lfloor\frac{n}{x_i}\right\rfloor}{2}\right\rfloor=\left\lfloor\frac{x_i+\frac{n}{x_i}}{2}\right\rfloor\ge\left\lfloor\sqrt{n}\right\rfloor=s
+
+# lower-upper-bounds
+s\le x_{i+1}<x_i
+
+# convergence-2-1
+x_i\ge s+1
+
+# convergence-2-2
+s+1=\left\lfloor\sqrt{n}\right\rfloor+1>\sqrt{n}
+
+# convergence-2-3
+x_i>\sqrt{n}
+
+# convergence-2-4
+x_i^2>n
+
+# convergence-2-5
+2x_i^2>x_i^2+n
+
+# convergence-2-6
+x_i>\frac{x_i^2+n}{2x_i}=\frac{x_i+\frac{n}{x_i}}{2}\ge\left\lfloor\frac{x_i+\frac{n}{x_i}}{2}\right\rfloor
+
+# convergence-2-7
+x_i>\left\lfloor\frac{x_i+\frac{n}{x_i}}{2}\right\rfloor=\left\lfloor\frac{x_i+\left\lfloor\frac{n}{x_i}\right\rfloor}{2}\right\rfloor=x_{i+1}

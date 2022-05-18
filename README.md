@@ -135,7 +135,9 @@ Also let's define
 
 <img src="formulas/s-2.png" width=78 height=24>
 
-Given *n* ≥ 1, *s* ≥ 1 and *x*<sub>0</sub> is an integer greater than 0. All subsequent terms of the series are obviously also integers. Next we'll show by induction that all terms after the zeroth one are greater than or equal to *s*.
+Given *n* ≥ 1, we have *s* ≥ 1 and *x*<sub>0</sub> is an integer greater than 0. All subsequent terms of the series are obviously also integers. Next we'll show by induction that all terms after the zeroth one are greater than or equal to *s*.
+
+#### Lower bound on series terms
 
 Suppose *x*<sub>*i*</sub> ≥ 1. We'll show that *x*<sub>*i*+1</sub> ≥ *s*.
 
@@ -151,15 +153,37 @@ We can divide both sides by the positive quantity 2*x*<sub>*i*</sub> and simplif
 <img src="formulas/induction-2-5.png" width=111 height=47>
 <img src="formulas/induction-2-6.png" width=114 height=45>
 
-Taking the floor of both sides we get
+Taking the floor of both sides and then using lemma 3 we get
 
-<img src="formulas/induction-2-7.png" width=251 height=50>
+<img src="formulas/induction-2-7.png" width=148 height=50>
+<img src="formulas/induction-2-8.png" width=385 height=75>
 
 This completes the induction.
 
-#### Lemma 4
+#### Upper bound on series terms
 
+Suppose *x*<sub>*i*</sub> > *s*, which is true for all *i* > 0. We'll show that *x*<sub>*i+1*</sub> < *x*<sub>*i*</sub> so the series is strictly decreasing as long as terms are greater than *s*.
 
+*x*<sub>*i*</sub> is an integer, so *x*<sub>*i*</sub> > *s* implies
+
+<img src="formulas/convergence-2-1.png" width=84 height=17>
+
+By the definition of *s*, we get
+
+<img src="formulas/convergence-2-2.png" width=204 height=24>
+<img src="formulas/convergence-2-3.png" width=71 height=20>
+<img src="formulas/convergence-2-4.png" width=56 height=23>
+<img src="formulas/convergence-2-5.png" width=109 height=23>
+Dividing both sides by the positive value 2*x*<sub>*i*</sub>, we get
+<img src="formulas/convergence-2-6.png" width=291 height=50>
+Using lemma 3 yields the upper bound on *x*<sub>*i*+1</sub>.
+<img src="formulas/convergence-2-7.png" width=318 height=75>
+
+Combining the upper bound with the lower bound, we get
+
+<img src="formulas/lower-upper-bounds.png" width=111 height=17>
+
+There are only finitely many integers between *s* and *x*<sub>*i*</sub>, so the series must decrease on each step (other than the zeroth because we don't necessarily have *x*<sub>0</sub> > *s*) and eventually reach *x*<sub>*k*</sub> = *s* for some *k*. At that point the series cannot decrease further, so we can detect *x*<sub>*k*</sub> = *s* when *k* > 0 and *x*<sub>*k+1*</sub> ≥ *x*<sub>*k*</sub>.
 
 ## Small Value Optimization
 
