@@ -131,11 +131,33 @@ Recall that the series for computing *BigIntSqrt*(*n*) when integer *n* > 0 co
 <img src="formulas/initial-guess-2-full.png" width=125 height=22>
 <img src="formulas/int-newtons-method-2.png" width=161 height=75>
 
-Given *n* ≥ 1, *x*<sub>0</sub> is an integer greater than 0. All subsequent terms of the series are obviously also integers.
-
-Define
+Also let's define
 
 <img src="formulas/s-2.png" width=78 height=24>
+
+Given *n* ≥ 1, *s* ≥ 1 and *x*<sub>0</sub> is an integer greater than 0. All subsequent terms of the series are obviously also integers. Next we'll show by induction that all terms after the zeroth one are greater than or equal to *s*.
+
+Suppose *x*<sub>*i*</sub> ≥ 1. We'll show that *x*<sub>*i*+1</sub> ≥ *s*.
+
+The square of a real number is nonnegative, so we have
+
+<img src="formulas/induction-2-1.png" width=126 height=23>
+
+We can divide both sides by the positive quantity 2*x*<sub>*i*</sub> and simplify to get
+
+<img src="formulas/induction-2-2.png" width=149 height=47>
+<img src="formulas/induction-2-3.png" width=171 height=47>
+<img src="formulas/induction-2-4.png" width=144 height=47>
+<img src="formulas/induction-2-5.png" width=111 height=47>
+<img src="formulas/induction-2-6.png" width=114 height=45>
+
+Taking the floor of both sides we get
+
+<img src="formulas/induction-2-7.png" width=251 height=50>
+
+This completes the induction.
+
+#### Lemma 4
 
 
 

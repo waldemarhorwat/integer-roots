@@ -57,3 +57,24 @@ x_{i+1}=\left\lfloor\frac{x_i+\left\lfloor\frac{n}{x_i}\right\rfloor}{2}\right\r
 
 # floor-recursion-redundant-1
 \left\lfloor\frac{a+\left\lfloor\frac{n}{a}\right\rfloor}{2}\right\rfloor=\left\lfloor\frac{\left\lfloor a+\frac{n}{a}\right\rfloor}{2}\right\rfloor=\left\lfloor\frac{a+\frac{n}{a}}{2}\right\rfloor
+
+# induction-2-1
+(x_i-\sqrt{n})^{2}\ge 0
+
+# induction-2-2
+\frac{(x_i-\sqrt{n})^{2}}{2x_i}\ge\frac{0}{2x_i}
+
+# induction-2-3
+\frac{x_i^2-2x_i\sqrt{n}+n}{2x_i}\ge 0
+
+# induction-2-4
+\frac{x_i^2+n}{2x_i}-\sqrt{n}\ge 0
+
+# induction-2-5
+\frac{x_i^2+n}{2x_i}\ge\sqrt{n}
+
+# induction-2-6
+\frac{x_i+\frac{n}{x_i}}{2}\ge\sqrt{n}
+
+# induction-2-7
+x_{i+1}=\left\lfloor\frac{x_i+\frac{n}{x_i}}{2}\right\rfloor\ge\left\lfloor\sqrt{n}\right\rfloor=s
