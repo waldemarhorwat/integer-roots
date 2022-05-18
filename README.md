@@ -174,9 +174,13 @@ By the definition of *s*, we get
 <img src="formulas/convergence-2-3.png" width=71 height=20>
 <img src="formulas/convergence-2-4.png" width=56 height=23>
 <img src="formulas/convergence-2-5.png" width=109 height=23>
-Dividing both sides by the positive value 2*x*<sub>*i*</sub>, we get
+
+Dividing both sides by the positive value 2*x*<sub>*i*</sub> we get
+
 <img src="formulas/convergence-2-6.png" width=291 height=50>
-Using lemma 3 yields the upper bound on *x*<sub>*i*+1</sub>.
+
+Applying lemma 3 yields the upper bound on *x*<sub>*i*+1</sub>.
+
 <img src="formulas/convergence-2-7.png" width=318 height=75>
 
 Combining the upper bound with the lower bound, we get
