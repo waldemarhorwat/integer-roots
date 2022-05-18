@@ -31,14 +31,23 @@ x_0=2^{\left\lfloor w/2\right\rfloor}
 # initial-guess-2-full
 x_0=2^{\left\lfloor\left\lfloor\log_{2}n\right\rfloor/2\right\rfloor}
 
+# initial-guess-3
+x_0=2^{\left\lfloor w/3\right\rfloor}
+
 # s-2
 s=\left\lfloor\sqrt{n}\right\rfloor
 
 # x-k-2
 x_k=\left\lfloor\sqrt{n}\right\rfloor
 
+# x-k-3
+x_k=\left\lfloor\sqrt[3]{n}\right\rfloor
+
 # int-newtons-method-2
 x_{i+1}=\left\lfloor\frac{x_i+\left\lfloor\frac{n}{x_i}\right\rfloor}{2}\right\rfloor
+
+# int-newtons-method-3
+x_{i+1}=\left\lfloor\frac{2x_i+\left\lfloor\frac{n}{x_i^2}\right\rfloor}{3}\right\rfloor
 
 # floor-int-addition
 \forall x\in\mathbb{R}, n\in\mathbb{Z}:\left\lfloor x+n\right\rfloor=\left\lfloor x\right\rfloor+n

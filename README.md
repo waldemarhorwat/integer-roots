@@ -126,7 +126,7 @@ The result *x*<sub>8</sub> is ⌊10<sup>100</sup> √2⌋, so √2 = 1.41421356
 
 We can add an optimization that computes *BigIntSqrt* directly using floating-point arithmetic for *n* small enough that `Math.sqrt` on *n* converted to a `Number` is accurate to within a few least significant bits. The threshold of what counts as "small enough" varies depending on the implementation accuracy of `Math.sqrt`, but 2<sup>44</sup> should be safe for any reasonable implementation.
 
-```
+```js
 function BigIntSqrt(n) {
   if (n < 0n)
     throw RangeError("Square root of negative BigInt");
@@ -139,9 +139,45 @@ function BigIntSqrt(n) {
 Adding 0.5 to *n* avoids potential problems if *n* is a perfect square of an integer *s*<sup>2</sup> but `Math.sqrt` is slightly inaccurate and produces an approximation that's slightly below *s*.
 
 
+## BigIntCbrt
+
+We implement *BigIntCbrt* as follows, which produces the cube root of *n* truncated towards zero. Once again we assume that the argument *n* has already been checked to be a `BigInt`.
+
+```js
+function BigIntCbrt(n) {
+  if (n < 0n)
+    return -BigIntCbrt(-n);
+  if (n === 0n)
+    return 0n;
+  const w = BigIntLog2(n);  // BigIntLog2 returns a BigInt
+  let x = 1n << (w / 3n);  // x is the initial guess x0 here
+  let next = (2n*x + n/(x*x)) / 3n;
+  do {
+    x = next;
+  } while ((next = (2n*x + n/(x*x)) / 3n) < x);
+  return x;
+}
+```
+
+### Small Value Optimization
+
+As with *BigIntSqrt*, we can do an optimization for small values of *n*:
+
+```js
+function BigIntCbrt(n) {
+  if (n < 0n)
+    return -BigIntCbrt(-n);
+  if (n < 0x100000000000n) {  // 2^44
+    return BigInt(Math.floor(Math.cbrt(Number(n) + 0.5)));
+  }
+  ... rest as before
+```
+
+
+
 # Explanation
 
-Now let's delve into how and why the algorithms work. They are based on Newton's method.
+Now let's delve into how and why the *BigIntSqrt* and *BigIntCbrt* algorithms work.
 
 ## Newton's Method on Real Numbers
 
@@ -161,11 +197,11 @@ For cube roots we're looking for roots of *f*(*x*) = *x*<sup>3</sup> – *n*
 
 These will produce an infinite series of successively more accurate real number approximations of the square or cube root of *n*.
 
-## Computing Square Roots
+## Newton's Method on Integers
 
-The basic Newton's method uses real numbers and produces an infinite series of approximations. Let's modify it to use only integer arithmetic to find integer square roots truncated towards 0. Later we'll show that we'll arrive at the exact answer in finitely many operations. A similar algorithm is described on [Wikipedia's entry on integer square roots](https://en.wikipedia.org/wiki/Integer_square_root) but without the detailed proof of correctness.
+The basic Newton's method uses real numbers and produces an infinite series of approximations. Let's modify it to use only integer arithmetic to find integer square or cube roots truncated towards 0. Later we'll show that we'll arrive at the exact answer in finitely many operations. A similar algorithm for square roots is described on [Wikipedia's entry on integer square roots](https://en.wikipedia.org/wiki/Integer_square_root) but without the detailed proof of correctness.
 
-## Square Root Algorithm
+### Square Root Algorithm
 
 The algorithm used to compute *BigIntSqrt*(*n*) where *n* is a nonnegative integer can be stated mathematically as follows:
 
@@ -184,8 +220,32 @@ Later we will prove that our search for such a *k* terminates and that *x*<sub>*
 
 <img src="formulas/x-k-2.png" width=88 height=24>
 
+### Cube Root Algorithm
 
-# Proof
+The algorithm used to compute *BigIntCbrt*(*n*) where *n* is any integer can be stated mathematically as follows:
+
+If *n* = 0, then return 0.
+
+If *n* < 0, then return –*BigIntCbrt*(–*n*).
+
+Otherwise *n* is positive. Let
+
+<img src="formulas/n-width.png" width=102 height=20>
+<img src="formulas/initial-guess-3.png" width=89 height=22>
+
+For *i* = 0, 1, 2, 3, … compute the series
+
+<img src="formulas/int-newtons-method-3.png" width=172 height=75>
+
+until we find the lowest *k* > 0 such that *x*<sub>*k*+1</sub> ≥ *x*<sub>*k*</sub>. Return *x*<sub>*k*</sub>.
+
+Later we will prove that our search for such a *k* terminates and that *x*<sub>*k*</sub> satisfies
+
+<img src="formulas/x-k-3.png" width=88 height=24>
+
+
+# Proofs
+
 ## Lemmas
 
 Let's start with a few [lemmas about the floor function](https://en.wikipedia.org/wiki/Floor_and_ceiling_functions#Equivalences).
@@ -215,7 +275,7 @@ Proof: By lemmas 1 and 2 we have
 
 <img src="formulas/floor-recursion-redundant-1.png" width=302 height=60>
 
-### Series
+## BigIntSqrt Proof
 
 Recall that the series for computing *BigIntSqrt*(*n*) when integer *n* > 0 consists of
 
@@ -228,7 +288,7 @@ Also let's define
 
 Given *n* ≥ 1, we have *s* ≥ 1 and *x*<sub>0</sub> is an integer greater than 0. All subsequent terms of the series are obviously also integers. Next we'll show by induction that all terms after the zeroth one are greater than or equal to *s*.
 
-#### Lower bound on series terms
+### Lower bound on series terms
 
 Suppose *x*<sub>*i*</sub> ≥ 1. We'll show that *x*<sub>*i*+1</sub> ≥ *s*.
 
@@ -251,7 +311,7 @@ Taking the floor of both sides and then using lemma 3 we get
 
 This completes the induction.
 
-#### Upper bound on series terms
+### Upper bound on series terms
 
 Suppose *x*<sub>*i*</sub> > *s*, which is true for all *i* > 0. We'll show that *x*<sub>*i+1*</sub> < *x*<sub>*i*</sub> so the series is strictly decreasing as long as terms are greater than *s*.
 
@@ -282,4 +342,5 @@ There are only finitely many integers between *s* and *x*<sub>*i*</sub> so the s
 
 The convergence is rapid, reaching *s* in O(log(log(*n*))) iterations, but the proof of the time bound is a bit more complicated and not needed here.
 
-# Cube Root Algorithm
+## BigIntCbrt Proof
+
