@@ -347,3 +347,28 @@ The convergence is rapid, reaching *s* in O(log(log(*n*))) iterations, but the p
 
 ## BigIntCbrt Proof
 
+The series for computing *BigIntCbrt*(*n*) when integer *n* > 0 consists of
+
+<img src="formulas/initial-guess-3-full.png" width=125 height=22>
+<img src="formulas/int-newtons-method-3.png" width=172 height=75>
+
+Also let's define
+
+<img src="formulas/s-3.png" width=78 height=24>
+
+Given *n* ≥ 1, we have *s* ≥ 1 and *x*<sub>0</sub> is an integer greater than 0. All subsequent terms of the series are obviously also integers. Next we'll show by induction that all terms after the zeroth one are greater than or equal to *s*.
+
+### Lower bound on series terms
+
+Suppose *x*<sub>*i*</sub> ≥ 1. We'll show that *x*<sub>*i*+1</sub> ≥ *s*.
+
+The left factor is always positive and the right factor is the square of a real number which is always nonnegative, so we have
+
+<img src="formulas/induction-3-1.png" width=220 height=23>
+
+We can expand and collect terms to get
+
+<img src="formulas/induction-3-2a.png" width=475 height=26>
+<img src="formulas/induction-3-2b.png" width=201 height=23>
+
+We can divide both sides by the positive quantity 3*x*<sub>*i*</sub><sup>2</sup> and simplify to get
