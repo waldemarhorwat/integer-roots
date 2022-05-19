@@ -10,6 +10,7 @@ I'm also including proofs that these algorithms compute the exact results for al
 — *Waldemar Horwat*
 — *May 2022*
 
+
 ## Notation
 
 All math operations have their usual mathematical meanings on real numbers.
@@ -29,6 +30,7 @@ When *x* and *y* are integers, this is the same as ECMAScript's `BigInt` divisio
 When *x* ≥ 0 and *y* > 0, the result of *x*/*y* is nonnegative, so truncating it towards 0 is the same as truncating it towards -∞.
 
 * In such nonnegative cases we'll sometimes use <img src="formulas/quotient-floor.png" width=24 height=40> instead of <img src="formulas/quotient.png" width=22 height=40>. In those cases they're equivalent and both denote ECMAScript's `BigInt` division of *x* and *y*.
+
 
 
 # ECMAScript Algorithms
@@ -123,7 +125,7 @@ Let's figure out the exact values of the first 101 decimal digits of the square 
 
 The result *x*<sub>8</sub> is ⌊10<sup>100</sup> √2⌋, so √2 = 1.4142135623730950488016887242096980785696718753769480731766797379907324784621070388503875343276415727…
 
-### Small Value Optimization
+### Small value optimization
 
 We can add an optimization that computes *BigIntSqrt* directly using floating-point arithmetic for *n* small enough that `Math.sqrt` on *n* converted to a `Number` is accurate to within a few least significant bits. The threshold of what counts as "small enough" varies depending on the implementation accuracy of `Math.sqrt`, but 2<sup>44</sup> should be safe for any reasonable implementation.
 
@@ -160,7 +162,7 @@ function BigIntCbrt(n) {
 }
 ```
 
-### Small Value Optimization
+### Small value optimization
 
 As with *BigIntSqrt*, we can do an optimization for small values of *n*:
 
@@ -245,6 +247,7 @@ Later we will prove that our search for such a *k* terminates and that *x*<sub>*
 <img src="formulas/x-k-3.png" width=88 height=24>
 
 
+
 # Proofs
 
 ## Lemmas
@@ -278,6 +281,7 @@ Proof: By lemmas 1 and 2 we have
 
 <img src="formulas/floor-recursion-redundant-1.png" width=302 height=60>
 
+
 ## BigIntSqrt Proof
 
 Recall that the series for computing *BigIntSqrt*(*n*) when integer *n* > 0 consists of
@@ -291,7 +295,7 @@ Also let's define
 
 Given *n* ≥ 1, we have *s* ≥ 1 and *x*<sub>0</sub> is an integer greater than 0. All subsequent terms of the series are obviously also integers. Next we'll show by induction that all terms after the zeroth one are greater than or equal to *s*.
 
-### Lower bound on series terms
+### Lower bound on BigIntSqrt series terms
 
 Suppose *x*<sub>*i*</sub> ≥ 1. We'll show that *x*<sub>*i*+1</sub> ≥ *s*.
 
@@ -314,7 +318,7 @@ Taking the floor of both sides and then using lemma 3 we get
 
 This completes the induction.
 
-### Upper bound on series terms
+### Upper bound on BigIntSqrt series terms
 
 Suppose *x*<sub>*i*</sub> > *s*, which is true for all *i* > 0. We'll show that *x*<sub>*i+1*</sub> < *x*<sub>*i*</sub> so the series is strictly decreasing as long as terms are greater than *s*.
 
@@ -325,6 +329,9 @@ Suppose *x*<sub>*i*</sub> > *s*, which is true for all *i* > 0. We'll show t
 By the definition of *s*, we get
 
 <img src="formulas/convergence-2-2.png" width=204 height=24>
+
+Combining the above two inequalities yields
+
 <img src="formulas/convergence-2-3.png" width=71 height=20>
 <img src="formulas/convergence-2-4.png" width=56 height=23>
 <img src="formulas/convergence-2-5.png" width=109 height=23>
@@ -343,7 +350,6 @@ Combining the upper bound with the lower bound, we get
 
 There are only finitely many integers between *s* and *x*<sub>*i*</sub> so the series must decrease on each step (other than the zeroth because we don't necessarily have *x*<sub>0</sub> > *s*) and eventually reach *x*<sub>*k*</sub> = *s* for some *k*. At that point the series cannot decrease further, so we can detect *x*<sub>*k*</sub> = *s* when *k* > 0 and *x*<sub>*k+1*</sub> ≥ *x*<sub>*k*</sub>.
 
-The convergence is rapid, reaching *s* in O(log(log(*n*))) iterations, but the proof of the time bound is a bit more complicated and not needed here.
 
 ## BigIntCbrt Proof
 
@@ -358,7 +364,7 @@ Also let's define
 
 Given *n* ≥ 1, we have *s* ≥ 1 and *x*<sub>0</sub> is an integer greater than 0. All subsequent terms of the series are obviously also integers. Next we'll show by induction that all terms after the zeroth one are greater than or equal to *s*.
 
-### Lower bound on series terms
+### Lower bound on BigIntCbrt series terms
 
 Suppose *x*<sub>*i*</sub> ≥ 1. We'll show that *x*<sub>*i*+1</sub> ≥ *s*.
 
@@ -366,9 +372,56 @@ The left factor is always positive and the right factor is the square of a real 
 
 <img src="formulas/induction-3-1.png" width=220 height=23>
 
-We can expand and collect terms to get
+Expanding the products and collecting terms yields
 
 <img src="formulas/induction-3-2a.png" width=475 height=26>
 <img src="formulas/induction-3-2b.png" width=201 height=23>
 
 We can divide both sides by the positive quantity 3*x*<sub>*i*</sub><sup>2</sup> and simplify to get
+
+<img src="formulas/induction-3-3.png" width=241 height=50>
+<img src="formulas/induction-3-4.png" width=154 height=50>
+<img src="formulas/induction-3-5.png" width=121 height=50>
+<img src="formulas/induction-3-6.png" width=125 height=47>
+
+Taking the floor of both sides and then using lemma 3 we get
+
+<img src="formulas/induction-3-7.png" width=161 height=60>
+<img src="formulas/induction-3-8.png" width=410 height=75>
+
+This completes the induction.
+
+### Upper bound on BigIntCbrt series terms
+
+Suppose *x*<sub>*i*</sub> > *s*, which is true for all *i* > 0. We'll show that *x*<sub>*i+1*</sub> < *x*<sub>*i*</sub> so the series is strictly decreasing as long as terms are greater than *s*.
+
+*x*<sub>*i*</sub> is an integer, so *x*<sub>*i*</sub> > *s* implies
+
+<img src="formulas/convergence-3-1.png" width=84 height=17>
+
+By the definition of *s*, we get
+
+<img src="formulas/convergence-3-2.png" width=204 height=24>
+
+Combining the above two inequalities yields
+
+<img src="formulas/convergence-3-3.png" width=71 height=20>
+<img src="formulas/convergence-3-4.png" width=56 height=23>
+<img src="formulas/convergence-3-5.png" width=118 height=23>
+
+Dividing both sides by the positive value 3*x*<sub>*i*</sub><sup>2</sup> we get
+
+<img src="formulas/convergence-3-6.png" width=325 height=60>
+
+Applying lemma 3 yields the upper bound on *x*<sub>*i*+1</sub>.
+
+<img src="formulas/convergence-3-7.png" width=343 height=75>
+
+Combining the upper bound with the lower bound, we get
+
+<img src="formulas/lower-upper-bounds.png" width=111 height=17>
+
+There are only finitely many integers between *s* and *x*<sub>*i*</sub> so the series must decrease on each step (other than the zeroth because we don't necessarily have *x*<sub>0</sub> > *s*) and eventually reach *x*<sub>*k*</sub> = *s* for some *k*. At that point the series cannot decrease further, so we can detect *x*<sub>*k*</sub> = *s* when *k* > 0 and *x*<sub>*k+1*</sub> ≥ *x*<sub>*k*</sub>.
+
+QED
+

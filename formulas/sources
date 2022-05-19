@@ -106,6 +106,24 @@ x_{i+1}=\left\lfloor\frac{x_i+\left\lfloor\frac{n}{x_i}\right\rfloor}{2}\right\r
 # induction-3-2b
 =2x_i^3-3x_i^2\sqrt[3]{n}+n\ge 0
 
+# induction-3-3
+\frac{2x_i^3-3x_i^2\sqrt[3]{n}+n}{3x_i^2}\ge\frac{0}{3x_i^2}=0
+
+# induction-3-4
+\frac{2x_i^3+n}{3x_i^2}-\sqrt[3]{n}\ge 0
+
+# induction-3-5
+\frac{2x_i^3+n}{3x_i^2}\ge\sqrt[3]{n}
+
+# induction-3-6
+\frac{2x_i+\frac{n}{x_i^2}}{3}\ge\sqrt[3]{n}
+
+# induction-3-7
+\left\lfloor\frac{2x_i+\frac{n}{x_i^2}}{3}\right\rfloor\ge\left\lfloor\sqrt[3]{n}\right\rfloor
+
+# induction-3-8
+x_{i+1}=\left\lfloor\frac{2x_i+\left\lfloor\frac{n}{x_i^2}\right\rfloor}{3}\right\rfloor=\left\lfloor\frac{2x_i+\frac{n}{x_i^2}}{3}\right\rfloor\ge\left\lfloor\sqrt[3]{n}\right\rfloor=s
+
 # lower-upper-bounds
 s\le x_{i+1}<x_i
 
@@ -129,3 +147,24 @@ x_i>\frac{x_i^2+n}{2x_i}=\frac{x_i+\frac{n}{x_i}}{2}\ge\left\lfloor\frac{x_i+\fr
 
 # convergence-2-7
 x_i>\left\lfloor\frac{x_i+\frac{n}{x_i}}{2}\right\rfloor=\left\lfloor\frac{x_i+\left\lfloor\frac{n}{x_i}\right\rfloor}{2}\right\rfloor=x_{i+1}
+
+# convergence-3-1
+x_i\ge s+1
+
+# convergence-3-2
+s+1=\left\lfloor\sqrt[3]{n}\right\rfloor+1>\sqrt[3]{n}
+
+# convergence-3-3
+x_i>\sqrt[3]{n}
+
+# convergence-3-4
+x_i^3>n
+
+# convergence-3-5
+3x_i^3>2x_i^3+n
+
+# convergence-3-6
+x_i>\frac{2x_i^3+n}{3x_i^2}=\frac{2x_i+\frac{n}{x_i^2}}{3}\ge\left\lfloor\frac{2x_i+\frac{n}{x_i^2}}{3}\right\rfloor
+
+# convergence-3-7
+x_i>\left\lfloor\frac{2x_i+\frac{n}{x_i^2}}{3}\right\rfloor=\left\lfloor\frac{2x_i+\left\lfloor\frac{n}{x_i^2}\right\rfloor}{3}\right\rfloor=x_{i+1}
