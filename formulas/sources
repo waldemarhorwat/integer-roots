@@ -62,10 +62,10 @@ x_{i+1}=\left\lfloor\frac{2x_i+\left\lfloor\frac{n}{x_i^2}\right\rfloor}{3}\righ
 \left\lfloor\frac{\left\lfloor x\right\rfloor}{n}\right\rfloor=\left\lfloor\frac{\left\lfloor(jn+k)+f\right\rfloor}{n}\right\rfloor=\left\lfloor\frac{jn+k}{n}\right\rfloor=\left\lfloor j+\frac{k}{n}\right\rfloor=j
 
 # floor-recursion-redundant
-\forall a\in\mathbb{Z}, n\in\mathbb{Z}, n>0:\left\lfloor\frac{a+\left\lfloor\frac{n}{a}\right\rfloor}{2}\right\rfloor=\left\lfloor\frac{a+\frac{n}{a}}{2}\right\rfloor
+\forall a,b,c,n\in\mathbb{Z}, b\ne 0,c>0:\left\lfloor\frac{a+\left\lfloor\frac{n}{b}\right\rfloor}{c}\right\rfloor=\left\lfloor\frac{a+\frac{n}{b}}{c}\right\rfloor
 
 # floor-recursion-redundant-1
-\left\lfloor\frac{a+\left\lfloor\frac{n}{a}\right\rfloor}{2}\right\rfloor=\left\lfloor\frac{\left\lfloor a+\frac{n}{a}\right\rfloor}{2}\right\rfloor=\left\lfloor\frac{a+\frac{n}{a}}{2}\right\rfloor
+\left\lfloor\frac{a+\left\lfloor\frac{n}{b}\right\rfloor}{c}\right\rfloor=\left\lfloor\frac{\left\lfloor a+\frac{n}{b}\right\rfloor}{c}\right\rfloor=\left\lfloor\frac{a+\frac{n}{b}}{c}\right\rfloor
 
 # induction-2-1
 (x_i-\sqrt{n})^{2}\ge 0

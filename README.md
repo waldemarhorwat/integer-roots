@@ -35,7 +35,8 @@ When *x* ≥ 0 and *y* > 0, the result of *x*/*y* is nonnegative, so truncat
 
 ## Bit-Size
 
-We'll need a helper function *BigIntLog2* that, given a positive integer *n*, returns the position of its most significant set bit when expressed in binary. For example, *BigIntLog2*(1) = 0, *BigIntLog2*(2) = 1, *BigIntLog2*(255) = 7, *BigIntLog2*(256) = 8.<br>
+We'll need a helper function *BigIntLog2* that, given a positive integer *n*, returns the position of its most significant set bit when expressed in binary. For example, *BigIntLog2*(1) = 0, *BigIntLog2*(2) = 1, *BigIntLog2*(255) = 7, *BigIntLog2*(256) = 8.
+
 Mathematically *BigIntLog2* is defined as
 
 <img src="formulas/BigIntLog2-def.png" width=352 height=20>
@@ -199,7 +200,7 @@ These will produce an infinite series of successively more accurate real number 
 
 ## Newton's Method on Integers
 
-The basic Newton's method uses real numbers and produces an infinite series of approximations. Let's modify it to use only integer arithmetic to find integer square or cube roots truncated towards 0. Later we'll show that we'll arrive at the exact answer in finitely many operations. A similar algorithm for square roots is described on [Wikipedia's entry on integer square roots](https://en.wikipedia.org/wiki/Integer_square_root) but without the detailed proof of correctness.
+The standard Newton's method uses real numbers and produces an infinite series of approximations. Let's modify it to use only integer arithmetic to find integer square or cube roots truncated towards 0. Later we'll show that we'll arrive at the exact answer in finitely many operations. A similar algorithm for square roots is described on [Wikipedia's entry on integer square roots](https://en.wikipedia.org/wiki/Integer_square_root) but without the detailed proof of correctness.
 
 ### Square Root Algorithm
 
@@ -269,7 +270,9 @@ To prove this, let *x* = *i* + *f* where *i* is an integer and 0 ≤ *f* 
 
 #### Lemma 3
 
-<img src="formulas/floor-recursion-redundant.png" width=378 height=60>
+If all of *a*, *b*, *c*, and *n* are integers with *b* ≠ 0 and *c* > 0, we can eliminate the inner floor in:
+
+<img src="formulas/floor-recursion-redundant.png" width=424 height=60>
 
 Proof: By lemmas 1 and 2 we have
 
