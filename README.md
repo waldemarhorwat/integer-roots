@@ -49,7 +49,7 @@ We'll assume we have an efficient ECMAScript implementation of *BigIntLog2* that
 
 ## BigIntSqrt
 
-We implement *BigIntSqrt* as follows. For simplicity we assume that the argument *n* has already been checked to be a `BigInt`.
+We implement *BigIntSqrt* in ECMAScript as follows. For simplicity we assume that the argument *n* has already been checked to be a `BigInt`.
 
 ```js
 function BigIntSqrt(n) {
@@ -162,6 +162,34 @@ function BigIntCbrt(n) {
 }
 ```
 
+### Examples
+
+If we step through `BigIntCbrt(125n)`, we get the following values of *x*, *w*, and the final *next*:
+
+- *w* = `6n`
+- *x*<sub>0</sub> = `4n`
+- *x*<sub>1</sub> = `5n`
+- *next* = `5n`
+
+and the result is *x*<sub>1</sub> = `5n`.
+
+Let's take the cube root of a googol:
+
+`BigIntCbrt(10n**100n)`
+
+- *w* = `332n`
+- *x*<sub>0</sub> = `1298074214633706907132624082305024n`
+- *x*<sub>1</sub> = `2843626090122429343812008194362090n`
+- *x*<sub>2</sub> = `2307975193491828189478923582864817n`
+- *x*<sub>3</sub> = `2164422626317660162834416053331641n`
+- *x*<sub>4</sub> = `2154480709428036015136058273653333n`
+- *x*<sub>5</sub> = `2154434691014844364863943029148908n`
+- *x*<sub>6</sub> = `2154434690031883722207769275611571n`
+- *x*<sub>7</sub> = `2154434690031883721759293566519350n`
+- *next* = `2154434690031883721759293566519350n`
+
+with the answer *x*<sub>7</sub> = 2154434690031883721759293566519350, which is the first 34 digits of the decimal representation of the cube root of 10.
+
 ### Small value optimization
 
 As with *BigIntSqrt*, we can do an optimization for small values of *n*:
@@ -206,7 +234,7 @@ The standard Newton's method uses real numbers and produces an infinite series o
 
 ### Square Root Algorithm
 
-The algorithm used to compute *BigIntSqrt*(*n*) where *n* is a nonnegative integer can be stated mathematically as follows:
+The algorithm that implements *BigIntSqrt*(*n*) where *n* is a nonnegative integer can be stated mathematically as follows:
 
 If *n* = 0, then return 0. Otherwise, let
 
@@ -225,7 +253,7 @@ Later we will prove that our search for such a *k* terminates and that *x*<sub>*
 
 ### Cube Root Algorithm
 
-The algorithm used to compute *BigIntCbrt*(*n*) where *n* is any integer can be stated mathematically as follows:
+The algorithm that implements *BigIntCbrt*(*n*) where *n* is any integer can be stated mathematically as follows:
 
 If *n* = 0, then return 0.
 
@@ -293,7 +321,7 @@ Also let's define
 
 <img src="formulas/s-2.png" width=78 height=24>
 
-Given *n* ≥ 1, we have *s* ≥ 1 and *x*<sub>0</sub> is an integer greater than 0. All subsequent terms of the series are obviously also integers. Next we'll show by induction that all terms after the zeroth one are greater than or equal to *s*.
+Given *n* ≥ 1, we have *s* ≥ 1 and *x*<sub>0</sub> is an integer greater than 0. All subsequent terms of the series are also integers due to the definition of *x*<sub>*i*+1</sub>. Next we'll show by induction that all terms of the series after the zeroth one (i.e. *x*<sub>*i*</sub> with *i* > 0) are greater than or equal to *s*.
 
 ### Lower bound on BigIntSqrt series terms
 
@@ -362,7 +390,7 @@ Also let's define
 
 <img src="formulas/s-3.png" width=78 height=24>
 
-Given *n* ≥ 1, we have *s* ≥ 1 and *x*<sub>0</sub> is an integer greater than 0. All subsequent terms of the series are obviously also integers. Next we'll show by induction that all terms after the zeroth one are greater than or equal to *s*.
+Given *n* ≥ 1, we have *s* ≥ 1 and *x*<sub>0</sub> is an integer greater than 0. All subsequent terms of the series are also integers due to the definition of *x*<sub>*i*+1</sub>. Next we'll show by induction that all terms of the series after the zeroth one (i.e. *x*<sub>*i*</sub> with *i* > 0) are greater than or equal to *s*.
 
 ### Lower bound on BigIntCbrt series terms
 
