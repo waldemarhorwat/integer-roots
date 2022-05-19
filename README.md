@@ -327,7 +327,7 @@ Given *n* ≥ 1, we have *s* ≥ 1 and *x*<sub>0</sub> is an integer greater
 
 Suppose *x*<sub>*i*</sub> ≥ 1. We'll show that *x*<sub>*i*+1</sub> ≥ *s*.
 
-The square of a real number is nonnegative, so we have
+The square of any real number is nonnegative, so we have
 
 <img src="formulas/induction-2-1.png" width=126 height=23>
 
@@ -344,13 +344,13 @@ Taking the floor of both sides and then using lemma 3 we get
 <img src="formulas/induction-2-7.png" width=148 height=50>
 <img src="formulas/induction-2-8.png" width=385 height=75>
 
-This completes the induction.
+Thus *x*<sub>*i*+1</sub> ≥ *s* ≥ 1, which completes the induction.
 
 ### Upper bound on BigIntSqrt series terms
 
-Suppose *x*<sub>*i*</sub> > *s*, which is true for all *i* > 0. We'll show that *x*<sub>*i+1*</sub> < *x*<sub>*i*</sub> so the series is strictly decreasing as long as terms are greater than *s*.
+We already know that *x*<sub>*i*</sub> ≥ *s* for all *i* > 0. Now suppose *x*<sub>*i*</sub> > *s* for some *i*. We'll show that *x*<sub>*i+1*</sub> < *x*<sub>*i*</sub> so the series is strictly decreasing as long as terms are greater than *s*.
 
-*x*<sub>*i*</sub> is an integer, so *x*<sub>*i*</sub> > *s* implies
+*x*<sub>*i*</sub> and *s* are integers, so *x*<sub>*i*</sub> > *s* implies
 
 <img src="formulas/convergence-2-1.png" width=84 height=17>
 
@@ -361,6 +361,9 @@ By the definition of *s*, we get
 Combining the above two inequalities yields
 
 <img src="formulas/convergence-2-3.png" width=71 height=20>
+
+Squaring both sides and then adding *x*<sub>*i*</sub><sup>2</sup> to both sides results in
+
 <img src="formulas/convergence-2-4.png" width=56 height=23>
 <img src="formulas/convergence-2-5.png" width=109 height=23>
 
@@ -376,7 +379,7 @@ Combining the upper bound with the lower bound, we get
 
 <img src="formulas/lower-upper-bounds.png" width=111 height=17>
 
-There are only finitely many integers between *s* and *x*<sub>*i*</sub> so the series must decrease on each step (other than the zeroth because we don't necessarily have *x*<sub>0</sub> > *s*) and eventually reach *x*<sub>*k*</sub> = *s* for some *k*. At that point the series cannot decrease further, so we can detect *x*<sub>*k*</sub> = *s* when *k* > 0 and *x*<sub>*k+1*</sub> ≥ *x*<sub>*k*</sub>.
+There are only finitely many integers between *s* and *x*<sub>*i*</sub> so the series must decrease on each step (other than the zeroth because we don't necessarily have *x*<sub>0</sub> > *s*) and eventually reach *x*<sub>*k*</sub> = *s* for some *k*. At that point the series cannot decrease further, so we can detect *x*<sub>*k*</sub> = *s* by looking for *k* > 0 and *x*<sub>*k+1*</sub> ≥ *x*<sub>*k*</sub>.
 
 
 ## BigIntCbrt Proof
@@ -417,13 +420,13 @@ Taking the floor of both sides and then using lemma 3 we get
 <img src="formulas/induction-3-7.png" width=161 height=60>
 <img src="formulas/induction-3-8.png" width=410 height=75>
 
-This completes the induction.
+Thus *x*<sub>*i*+1</sub> ≥ *s* ≥ 1, which completes the induction.
 
 ### Upper bound on BigIntCbrt series terms
 
-Suppose *x*<sub>*i*</sub> > *s*, which is true for all *i* > 0. We'll show that *x*<sub>*i+1*</sub> < *x*<sub>*i*</sub> so the series is strictly decreasing as long as terms are greater than *s*.
+We already know that *x*<sub>*i*</sub> ≥ *s* for all *i* > 0. Now suppose *x*<sub>*i*</sub> > *s* for some *i*. We'll show that *x*<sub>*i+1*</sub> < *x*<sub>*i*</sub> so the series is strictly decreasing as long as terms are greater than *s*.
 
-*x*<sub>*i*</sub> is an integer, so *x*<sub>*i*</sub> > *s* implies
+*x*<sub>*i*</sub> and *s* are integers, so *x*<sub>*i*</sub> > *s* implies
 
 <img src="formulas/convergence-3-1.png" width=84 height=17>
 
@@ -434,6 +437,9 @@ By the definition of *s*, we get
 Combining the above two inequalities yields
 
 <img src="formulas/convergence-3-3.png" width=71 height=20>
+
+Cubing both sides and then adding 2*x*<sub>*i*</sub><sup>3</sup> to both sides results in
+
 <img src="formulas/convergence-3-4.png" width=56 height=23>
 <img src="formulas/convergence-3-5.png" width=118 height=23>
 
@@ -449,7 +455,7 @@ Combining the upper bound with the lower bound, we get
 
 <img src="formulas/lower-upper-bounds.png" width=111 height=17>
 
-There are only finitely many integers between *s* and *x*<sub>*i*</sub> so the series must decrease on each step (other than the zeroth because we don't necessarily have *x*<sub>0</sub> > *s*) and eventually reach *x*<sub>*k*</sub> = *s* for some *k*. At that point the series cannot decrease further, so we can detect *x*<sub>*k*</sub> = *s* when *k* > 0 and *x*<sub>*k+1*</sub> ≥ *x*<sub>*k*</sub>.
+There are only finitely many integers between *s* and *x*<sub>*i*</sub> so the series must decrease on each step (other than the zeroth because we don't necessarily have *x*<sub>0</sub> > *s*) and eventually reach *x*<sub>*k*</sub> = *s* for some *k*. At that point the series cannot decrease further, so we can detect *x*<sub>*k*</sub> = *s* by looking for *k* > 0 and *x*<sub>*k+1*</sub> ≥ *x*<sub>*k*</sub>.
 
 QED
 
