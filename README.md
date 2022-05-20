@@ -7,6 +7,8 @@ I'm also including proofs that these algorithms compute the exact results for al
 <img src="formulas/BigIntSqrt-def.png" width=330 height=24>
 <img src="formulas/BigIntCbrt-def.png" width=273 height=24>
 
+The goal is to get *BigIntSqrt* and *BigIntCbrt* included in the ECMAScript language under some suitable name in the effort to extend `Math` library functions such as `Math.abs` to also cover `BigInt` (the exact form and whether they'll be overloads or separate functions are to be decided). This is preferable to having users blindly copy snippets they find “on the net”. For example, at the time of this writing the top Google search result for "javascript bigint sqrt" produces a link to a buggy and needlessly slow ECMAScript algorithm that sometimes produces incorrect answers, such when computing the square root of 4.
+
 — *Waldemar Horwat*
 — *May 2022*
 
@@ -362,7 +364,7 @@ Combining the above two inequalities yields
 
 <img src="formulas/convergence-2-3.png" width=71 height=20>
 
-Squaring both sides and then adding *x*<sub>*i*</sub><sup>2</sup> to both sides results in
+Squaring both sides (which is valid because the function *f*(*a*) = *a*<sup>2</sup> is monotonically increasing for positive *a*) and then adding *x*<sub>*i*</sub><sup>2</sup> to both sides results in
 
 <img src="formulas/convergence-2-4.png" width=56 height=23>
 <img src="formulas/convergence-2-5.png" width=109 height=23>
@@ -438,7 +440,7 @@ Combining the above two inequalities yields
 
 <img src="formulas/convergence-3-3.png" width=71 height=20>
 
-Cubing both sides and then adding 2*x*<sub>*i*</sub><sup>3</sup> to both sides results in
+Cubing both sides (which is valid because the function *f*(*a*) = *a*<sup>3</sup> is monotonically increasing) and then adding 2*x*<sub>*i*</sub><sup>3</sup> to both sides results in
 
 <img src="formulas/convergence-3-4.png" width=56 height=23>
 <img src="formulas/convergence-3-5.png" width=118 height=23>
