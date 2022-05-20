@@ -31,7 +31,7 @@ function BigIntSqrt(n) {
 // Compute the cube root of the BigInt n, truncated towards 0 to an integer.
 // The result is a BigInt.
 // See the README for the proof of correctness on all BigInt inputs.
-ffunction BigIntCbrt(n) {
+function BigIntCbrt(n) {
   if (n < 0n)
     return -BigIntCbrt(-n);
   if (n === 0n)
