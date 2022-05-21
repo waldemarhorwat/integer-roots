@@ -278,6 +278,9 @@ Later we will prove that our search for such a *k* terminates and that *x*<sub>*
 
 <img src="formulas/x-k-3.png" width=88 height=24>
 
+### Choice of Initial Guess
+
+The initial guess *x*<sub>0</sub> must be positive and should be close to the result. The code presented here and the above formulas pick *x*<sub>0</sub> to always be within a factor of 2 of the final result, which results in quick convergence. Were we to pick the initial guess *x*<sub>0</sub> = 1 (as some web sites recommend), the algorithm would still work but converge slowly, for example taking 172 iterations to compute the square root of 10<sup>100</sup> instead of the 6 iterations using the algorithm presented here.
 
 
 # Proofs
