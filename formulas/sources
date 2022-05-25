@@ -31,6 +31,9 @@ x_0=2^{\left\lfloor w/2\right\rfloor}
 # initial-guess-2-full
 x_0=2^{\left\lfloor\left\lfloor\log_{2}n\right\rfloor/2\right\rfloor}
 
+# initial-guess-2-simple
+x_0=2^{\left\lfloor\left\lfloor\log_{2}n\right\rfloor/2\right\rfloor}=2^{\left\lfloor(\log_{2}n)/2\right\rfloor}
+
 # initial-guess-3
 x_0=2^{\left\lfloor w/3\right\rfloor}
 
@@ -168,3 +171,72 @@ x_i>\frac{2x_i^3+n}{3x_i^2}=\frac{2x_i+\frac{n}{x_i^2}}{3}\ge\left\lfloor\frac{2
 
 # convergence-3-7
 x_i>\left\lfloor\frac{2x_i+\frac{n}{x_i^2}}{3}\right\rfloor=\left\lfloor\frac{2x_i+\left\lfloor\frac{n}{x_i^2}\right\rfloor}{3}\right\rfloor=x_{i+1}
+
+# error-2-e
+e_i=\frac{x_i}{\sqrt{n}}-1
+
+# error-2-x
+x_i=\sqrt{n}(1+e_i)
+
+# e0-bounds-2-1
+\frac{\log_{2}n}{2}-1<\left\lfloor\frac{\log_{2}n}{2}\right\rfloor\le\frac{\log_{2}n}{2}
+
+# e0-bounds-2-2
+2^{(\log_{2}n)/2-1}<2^{\left\lfloor(\log_{2}n)/2\right\rfloor}\le2^{(\log_{2}n)/2}
+
+# e0-bounds-2-3
+\frac{\sqrt{n}}{2}<x_0\le\sqrt{n}
+
+# e0-bounds-2-4
+\frac{\sqrt{n}/2}{\sqrt{n}}-1<\frac{x_0}{\sqrt{n}}-1\le\frac{\sqrt{n}}{\sqrt{n}}-1
+
+# e0-bounds-2-5
+-1/2<e_0\le 0
+
+# e-induction-2-1
+e_{i+1}=\frac{x_{i+1}}{\sqrt{n}}-1=\frac{\left\lfloor\frac{x_i+\frac{n}{x_i}}{2}\right\rfloor}{\sqrt{n}}-1\le\frac{(\frac{x_i+\frac{n}{x_i}}{2})}{\sqrt{n}}-1
+
+# e-induction-2-2
+=\frac{\sqrt{n}(1+e_i)+\frac{n}{\sqrt{n}(1+e_i)}}{2\sqrt{n}}-1
+
+# e-induction-2-3
+=\frac{1+e_i+\frac{1}{1+e_i}}{2}-1=\frac{-1+e_i+\frac{1}{1+e_i}}{2}=\frac{e_i^2}{2(1+e_i)}
+
+# e-induction-2-4
+e_{i+1}\le\frac{e_i^2}{2(1+e_i)}
+
+# e-f-2
+f(e_i)=\frac{e_i^2}{2(1+e_i)}
+
+# e-f-2-derivative
+f'(e_i)=\frac{e_i(2+e_i)}{2(1+e_i)^2}
+
+# e1-bounds-2-1
+f(0)\le f(e_0)<f(-1/2)
+
+# e1-bounds-2-2
+0\le f(e_0)<1/4
+
+# e1-bounds-2-3
+e_1\le f(e_0)<1/4
+
+# e1-bounds-2-4
+e_1<1/4
+
+# e-termination-2-1
+\left\lfloor\sqrt{n}\right\rfloor=s\le x_i\le\sqrt{n}
+
+# e-termination-2-2
+x_i=\sqrt{n}(1+e_i)\le\sqrt{n}(1+\frac{1}{\sqrt{n}})=\sqrt{n}+1<\left\lfloor\sqrt{n}\right\rfloor+2=s+2
+
+# e-termination-2-3
+s<x_i<s+2
+
+# e-termination-2-4
+s\le x_{i+1}<x_i
+
+# e-bounds-2-1
+e_i<\frac{1}{2^{2^i}}
+
+# e-bounds-2-2
+e_{i+1}\le\frac{e_i^2}{2(1+e_i)}<e_i^2<(\frac{1}{2^{2^i}})^2=\frac{1}{2^{2^{i+1}}}

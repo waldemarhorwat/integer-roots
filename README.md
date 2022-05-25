@@ -280,7 +280,7 @@ Later we will prove that our search for such a *k* terminates and that *x*<sub>*
 
 ### Choice of Initial Guess
 
-The initial guess *x*<sub>0</sub> must be positive and should be close to the result. The code presented here and the above formulas pick *x*<sub>0</sub> to always be within a factor of 2 of the final result, which results in quick convergence. Were we to pick the initial guess *x*<sub>0</sub> = 1 (as some web sites recommend), the algorithm would still work but converge slowly, for example taking 172 iterations to compute the square root of 10<sup>100</sup> instead of the 6 iterations using the algorithm presented here.
+The initial guess *x*<sub>0</sub> must be positive and should be close to the result. As proven below, the code presented here and the above formulas pick *x*<sub>0</sub> to always be within a factor of 2 of the final result, which results in quick convergence. Were we to pick the initial guess *x*<sub>0</sub> = 1 (as some web sites recommend), the algorithm would still work but converge slowly, for example taking 172 iterations to compute the square root of 10<sup>100</sup> instead of the 6 iterations using the algorithm presented here.
 
 
 # Proofs
@@ -387,6 +387,129 @@ Combining the upper bound with the lower bound, we get
 <img src="formulas/lower-upper-bounds.png" width=111 height=17>
 
 There are only finitely many integers between *s* and *x*<sub>*i*</sub> so the series must decrease on each step (other than the zeroth because we don't necessarily have *x*<sub>0</sub> > *s*) and eventually reach *x*<sub>*k*</sub> = *s* for some *k*. At that point the series cannot decrease further, so we can detect *x*<sub>*k*</sub> = *s* by looking for *k* > 0 and *x*<sub>*k+1*</sub> ≥ *x*<sub>*k*</sub>.
+
+### Running time
+
+Now let's show that the worst-case running time is O(log(log(*n*))) integer operations for positive *n*.
+
+For each term in the *x*<sub>*i*</sub> series above let's introduce the concept of a corresponding relative error *e*<sub>*i*</sub>, which indicates how much *x*<sub>*i*</sub> differs from √*n*. Define
+
+<img src="formulas/error-2-e.png" width=105 height=40>
+
+or equivalently
+
+#### Zeroth iteration
+
+<img src="formulas/error-2-x.png" width=133 height=21>
+
+First let's calculate the possible range of *e*<sub>0</sub>.
+
+Applying lemma 2 to the definition of *x*<sub>0</sub> have
+
+<img src="formulas/initial-guess-2-simple.png" width=234 height=22>
+
+By the properties of the floor function, we have
+
+<img src="formulas/e0-bounds-2-1.png" width=261 height=48>
+
+Exponentiation is monotonically increasing, so this implies
+
+<img src="formulas/e0-bounds-2-2.png" width=291 height=22>
+
+which we can simplify using the properties of exponentiation and the definition of *x*<sub>0</sub> to
+
+<img src="formulas/e0-bounds-2-3.png" width=130 height=43>
+
+Thus *x*<sub>0</sub> is always within a factor of 2 of √*n*.
+
+To compute bounds on *e*<sub>0</sub> we divide all sides by √*n* and subtract 1 to get
+
+<img src="formulas/e0-bounds-2-4.png" width=267 height=47>
+
+and once again simplify and substitute the definition of *e*<sub>0</sub> to get the bounds
+
+<img src="formulas/e0-bounds-2-5.png" width=122 height=20>
+
+#### Subsequent iterations
+
+Let's compute *e*<sub>*i*+1</sub> in terms of *e*<sub>*i*</sub>. Combining the definition of *e*<sub>*i*+1</sub>, the recursion formula for *x*<sub>*i*+1</sub>, and *x*<sub>*i*</sub> = √*n*(1+*e*<sub>*i*</sub>) we have
+
+<img src="formulas/e-induction-2-1.png" width=374 height=63>
+<img src="formulas/e-induction-2-2.png" width=234 height=52>
+<img src="formulas/e-induction-2-3.png" width=412 height=53>
+
+Thus
+
+<img src="formulas/e-induction-2-4.png" width=134 height=49>
+
+Let's look at the right side and call it *f*(*e*<sub>*i*</sub>).
+
+<img src="formulas/e-f-2.png" width=142 height=49>
+
+Its derivative is
+
+<img src="formulas/e-f-2-derivative.png" width=154 height=48>
+
+so *f*(*e*<sub>*i*</sub>) is monotonically increasing for *e*<sub>*i*</sub> ≥ 0 and monotonically decreasing for –1 < *e*<sub>*i*</sub> ≤ 0 (*f* has a pole at *e*<sub>*i*</sub> = –1).
+
+From the bounds on *e*<sub>0</sub> we can compute the bounds on *f*(*e*<sub>0</sub>) and thus *e*<sub>1</sub>.
+
+<img src="formulas/e0-bounds-2-5.png" width=122 height=20>
+
+*f*(*e*<sub>0</sub>) is monotonically decreasing on that range so
+
+<img src="formulas/e1-bounds-2-1.png" width=203 height=20>
+<img src="formulas/e1-bounds-2-2.png" width=135 height=20>
+
+Since *e*<sub>*i*+1</sub> ≤ *f*(*e*<sub>*i*</sub>), we have
+
+<img src="formulas/e1-bounds-2-3.png" width=142 height=20>
+
+#### Termination
+
+The algorithm terminates when we get *e*<sub>*i*</sub> ≤ 0 with *i* > 0. That's because *e*<sub>*i*</sub> ≤ 0 implies *x*<sub>*i*</sub> ≤ √*n*, but we earlier showed the lower bound *x*<sub>*i*</sub> ≥ *s*, so *x*<sub>*i*</sub> is an integer such that
+
+<img src="formulas/e-termination-2-1.png" width=177 height=24>
+
+which requires *x*<sub>*i*</sub> = *s*.
+
+If we get 0 < *e*<sub>*i*</sub> ≤ 1/√*n* with *i* > 0 then the algorithm must terminate on the next iteration. That's because 0 < *e*<sub>*i*</sub> implies *s* < *x*<sub>*i*</sub> while *e*<sub>*i*</sub> ≤ 1/√*n* implies
+
+<img src="formulas/e-termination-2-2.png" width=514 height=46>
+
+so *x*<sub>*i*</sub> is an integer such that
+
+<img src="formulas/e-termination-2-2.png" width=120 height=17>
+
+The only choice is *x*<sub>*i*</sub> = *s* + 1, but we know from the lower and upper bounds that in this case
+
+<img src="formulas/e-termination-2-2.png" width=111 height=17>
+
+so *x*<sub>*i* + 1</sub> = *s*
+
+#### Number of iterations
+
+Recall the recursion relation
+
+<img src="formulas/e-induction-2-4.png" width=134 height=49>
+
+When *e*<sub>*i*</sub> is much greater than 1 this series decreases exponentially. For example, if *e*<sub>*i*</sub> = 2<sup>100</sup>, then *e*<sub>*i*+1</sub> ≈ 2<sup>99</sup>, *e*<sub>*i*+2</sub> ≈ 2<sup>98</sup>, and so on, taking roughly 100 iterations to reach 1. This is what would happen had we chosen a bad initial guess such as *x*<sub>0</sub> = 1. Fortunately the algorithm presented here does not do that.
+
+When *e*<sub>*i*</sub> is less than 1, the series decreases doubly-exponentially (the exponential of an exponential). For example, if *e*<sub>*i*</sub> = 2<sup>–100</sup>, then *e*<sub>*i*+1</sub> ≈ 2<sup>–201</sup>, *e*<sub>*i*+21</sub> ≈ 2<sup>–403</sup>, and so on. Our algorithm operates in this regime. Let's formalize it.
+
+We showed earlier that
+
+<img src="formulas/e1-bounds-2-4.png" width=72 height=20>
+
+We can prove by induction that, as long as the series hasn't reached the termination condition by going to zero or negative earlier, for *i* > 0 we have
+
+<img src="formulas/e-bounds-2-1.png" width=72 height=20>
+
+The base case is above. For the induction case,
+
+<img src="formulas/e-bounds-2-2.png" width=316 height=49>
+
+If *n* = 1, *x*<sub>0</sub> = *x*<sub>1</sub> = 1 and we're done immediately. If *n* > 1, we're guaranteed that *e*<sub>*i*</sub> < 1/√*n* for *i* no higher than log<sub>2</sub>(log<sub>2</sub>(√*n*)), and the algorithm must terminate either on that or the subsequent iteration. Thus, including the zeroth and the last iteration, the maximum running time is log<sub>2</sub>(log<sub>2</sub>(√*n*)) + 2 iterations, which is O(log(log(*n*)).
 
 
 ## BigIntCbrt Proof
