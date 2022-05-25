@@ -505,7 +505,7 @@ We can prove by induction that, as long as the series hasn't reached the termina
 
 <img src="formulas/e-bounds-2-1.png" width=64 height=41>
 
-The base case is above. For the induction case,
+The base case *e*<sub>1</sub> is above. For the induction case,
 
 <img src="formulas/e-bounds-2-2.png" width=316 height=49>
 
