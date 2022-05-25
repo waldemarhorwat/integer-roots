@@ -495,7 +495,7 @@ Recall the recursion relation
 
 When *e*<sub>*i*</sub> is much greater than 1 this series decreases exponentially. For example, if *e*<sub>*i*</sub> = 2<sup>100</sup>, then *e*<sub>*i*+1</sub> ≈ 2<sup>99</sup>, *e*<sub>*i*+2</sub> ≈ 2<sup>98</sup>, and so on, taking roughly 100 iterations to reach 1. This is what would happen had we chosen a bad initial guess such as *x*<sub>0</sub> = 1. Fortunately the algorithm presented here does not do that.
 
-When *e*<sub>*i*</sub> is less than 1, the series decreases doubly-exponentially (the exponential of an exponential). For example, if *e*<sub>*i*</sub> = 2<sup>–100</sup>, then *e*<sub>*i*+1</sub> ≈ 2<sup>–201</sup>, *e*<sub>*i*+2</sub> ≈ 2<sup>–403</sup>, and so on. Our algorithm operates in this regime. Let's formalize it.
+When *e*<sub>*i*</sub> is positive and less than 1, the series decreases doubly-exponentially (the exponential of an exponential). For example, if *e*<sub>*i*</sub> = 2<sup>–100</sup>, then *e*<sub>*i*+1</sub> ≈ 2<sup>–201</sup>, *e*<sub>*i*+2</sub> ≈ 2<sup>–403</sup>, and so on. Our algorithm operates in this regime. Let's formalize it.
 
 We showed earlier that
 
