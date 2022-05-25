@@ -479,11 +479,11 @@ If we get 0 < *e*<sub>*i*</sub> ≤ 1/√*n* with *i* > 0 then the algorit
 
 so *x*<sub>*i*</sub> is an integer such that
 
-<img src="formulas/e-termination-2-2.png" width=120 height=17>
+<img src="formulas/e-termination-2-3.png" width=120 height=17>
 
 The only choice is *x*<sub>*i*</sub> = *s* + 1, but we know from the lower and upper bounds that in this case
 
-<img src="formulas/e-termination-2-2.png" width=111 height=17>
+<img src="formulas/e-termination-2-4.png" width=111 height=17>
 
 so *x*<sub>*i* + 1</sub> = *s*
 
